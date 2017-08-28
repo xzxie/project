@@ -9,14 +9,26 @@
 
   <name>project</name>
   <url>http://maven.apache.org</url>
+  <description>open project solution</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>3.8.1</junit.version>
   </properties>
   
-  <description>open project solution</description>
+  <developers>
+  	<developer>
+  		<id>xzxie</id>
+  		<name>xzxie</name>
+  		<email>aaronxyt@gmail.com</email>
+  		<roles>
+  			<role>developer</role>
+  			<role>original author</role>
+  		</roles>
+  		<url>https://github.com/xzxie</url>
+  	</developer>
+  </developers>
   
-
   <dependencies>
   	<!-- apache.commons -->
 	<dependency>
@@ -71,8 +83,84 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <!-- 部署远程仓库 -->
+  <!-- 
+  <distributionManagement>
+  	<snapshotRepository>
+  		<id>nexus-snapshots</id>
+  		<name>nexus distribution snapshot repository</name>
+  		<url>http://10.78.68.122:9090/nexus-2.1.1/content/repositories/snapshots/</url>
+  	</snapshotRepository>
+  </distributionManagement>
+   -->
+  
+  <build>
+  	<pluginManagement>
+  		<plugins>
+  			<!-- maven-compiler-plugin -->
+  			<plugin>
+  				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-compiler-plugin</artifactId>
+  				<version>3.0</version>
+  				<configuration>
+  					<source>1.6</source>
+  					<target>1.6</target>
+  					<encoding>UTF-8</encoding>
+  				</configuration>
+  			</plugin>
+  			<!-- maven-resources-plugin -->
+  			<plugin>
+  				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-resources-plugin</artifactId>
+  				<version>2.6</version>
+  				<configuration>
+  					<encoding>UTF-8</encoding>
+  				</configuration>
+  			</plugin>
+  			<!-- maven-source-plugin -->
+  			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- maven-javadoc-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <source>1.6</source>
+                    <encoding>UTF-8</encoding>
+                    <links>
+                        <link>https://docs.oracle.com/javase/6/docs/api/</link>
+                    </links>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+  		</plugins>
+  	</pluginManagement>
+  </build>
+  
 </project>
